@@ -1,7 +1,11 @@
-import app from "./app";
+import express from 'express'
+import { healthRoute } from './routes/health.route'
 
-const PORT = 3000;
+const app = express()
 
-app.listen(PORT, () => {
-  console.log(`🚀 API running on http://localhost:${PORT}`);
-});
+app.use(express.json())
+app.use(healthRoute)
+
+app.listen(3000, () => {
+  console.log('API rodando na porta 3000')
+})

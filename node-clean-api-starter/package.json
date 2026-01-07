@@ -1,0 +1,19 @@
+{
+  "name": "node-clean-api-starter",
+  "version": "1.0.0",
+  "description": "Base profissional para APIs Node.js usando Clean Architecture",
+  "main": "dist/main/server.js",
+  "scripts": {
+    "dev": "ts-node-dev --respawn --transpile-only src/main/server.ts",
+    "build": "tsc",
+    "start": "node dist/main/server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.4.0"
+  }
+}

@@ -1,11 +1,11 @@
 import { randomUUID } from 'crypto';
 import { User } from '../../../domain/entities/User';
-import { UserRepository } from '../../../infrastructure/repositories/UserRepository';
+import { IUserRepository } from '../../../domain/Repository/IUserRepository';
 import { ApplicationError } from '../../errors/ApplicationError';
 import { CreateUserDTO } from './CreateUserDTO';
 
 export class CreateUserUseCase {
-  constructor(private userRepository: UserRepository) {}
+  constructor(private readonly userRepository: IUserRepository) {}
 
   async execute(data: CreateUserDTO): Promise<User> {
     const emailAlreadyExists =

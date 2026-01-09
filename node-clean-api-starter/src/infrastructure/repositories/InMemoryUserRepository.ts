@@ -1,9 +1,9 @@
 import { User } from '../../domain/entities/User';
-import { UserRepository } from '../../infrastructure/repositories/UserRepository';
+import { IUserRepository } from '../../domain/Repository/IUserRepository';
 
-export class InMemoryUserRepository implements UserRepository {
-  create(user: User): Promise<void> {
-    throw new Error('Method not implemented.');
+export class InMemoryUserRepository implements IUserRepository {
+  async create(user: User): Promise<void> {
+    await this.save(user);
   }
   private users: User[] = [];
 

@@ -4,7 +4,8 @@ import { ApplicationError } from '../errors/ApplicationError'
 
 const userRepositoryMock: IUserRepository = {
   findByEmail: jest.fn(),
-  save: jest.fn() 
+  save: jest.fn() ,
+  findAll: jest.fn()
   
 }
 

@@ -1,6 +1,6 @@
 import { randomUUID } from 'crypto';
 import { User } from '../../../domain/entities/User';
-import { IUserRepository } from '../../../domain/Repository/IUserRepository';
+import { IUserRepository } from '../../../domain/repositories/IUserRepository';
 import { ApplicationError } from '../../errors/ApplicationError';
 import { CreateUserDTO } from './CreateUserDTO';
 

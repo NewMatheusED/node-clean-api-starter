@@ -1,11 +1,11 @@
 import { CreateUserUseCase } from '../../application/use-cases/create-user/CreateUserUseCase'
-import { IUserRepository } from "../../domain/Repository/IUserRepository"
+import { IUserRepository } from "../../domain/repositories/IUserRepository"
 import { ApplicationError } from '../errors/ApplicationError'
 
 const userRepositoryMock: IUserRepository = {
   findByEmail: jest.fn(),
-  save: jest.fn(),
-  create: jest.fn()
+  save: jest.fn() 
+  
 }
 
 describe('CreateUserUseCase', () => {

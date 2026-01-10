@@ -1,12 +1,9 @@
 import { User } from '../../domain/entities/User';
-import { IUserRepository } from '../../domain/Repository/IUserRepository';
+import { IUserRepository } from '../../domain/repositories/IUserRepository';
 
 export class InMemoryUserRepository implements IUserRepository {
-  async create(user: User): Promise<void> {
-    await this.save(user);
-  }
   private users: User[] = [];
-
+  
   async findByEmail(email: string): Promise<User | null> {
     return this.users.find(user => user.email === email) ?? null;
   }

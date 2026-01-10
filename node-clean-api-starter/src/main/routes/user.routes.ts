@@ -1,11 +1,18 @@
-import { Router } from 'express';
-import { makeCreateUserController } from '../factories/makeCreateUserController';
+import { Router } from 'express'
+import { makeListUsersController } from '../factories/ListUsersControllerFactory'
+import { makeCreateUserController } from '../factories/makeCreateUserController'
 
-const userRoutes = Router();
+const routes = Router()
 
-userRoutes.post('/', async (req, res) => {
-  return makeCreateUserController().handle(req, res);
-});
+// Criar usuário
+routes.post('/users', (req, res) =>
+  makeCreateUserController().handle(req, res)
+)
 
-export { userRoutes };
+// Listar usuários
+routes.get('/users', (req, res) =>
+  makeListUsersController().handle(req, res)
+)
+
+export { routes as userRoutes }
 

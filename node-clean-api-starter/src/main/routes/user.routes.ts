@@ -4,14 +4,13 @@ import { makeCreateUserController } from '../factories/makeCreateUserController'
 
 const routes = Router()
 
-// Criar usuário
-routes.post('/users', (req, res) =>
-  makeCreateUserController().handle(req, res)
+
+routes.post('/users', (req, res, next) =>
+  makeCreateUserController().handle(req, res, next)
 )
 
-// Listar usuários
-routes.get('/users', (req, res) =>
-  makeListUsersController().handle(req, res)
+routes.get('/users', (req, res, next) =>
+  makeListUsersController().handle(req, res, next)
 )
 
 export { routes as userRoutes }

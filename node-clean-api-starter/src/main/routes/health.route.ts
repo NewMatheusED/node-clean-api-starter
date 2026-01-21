@@ -1,7 +1,8 @@
-import { Router } from 'express'
+import { Request, Response, Router } from "express";
 
-export const healthRoute = Router()
+export const healthRoute = Router();
 
-healthRoute.get('/health', (_req, res) => {
-  res.status(200).json({ status: 'ok' })
-})
+// O express já tem tipagem para req e res
+healthRoute.get("/health", (_req: Request, res: Response) => {
+  res.status(200).json({ status: "ok" });
+});

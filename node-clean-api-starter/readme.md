@@ -47,20 +47,24 @@ src/
 ```
 
 ### 🔹 Domain
+
 - Não conhece frameworks
 - Não conhece banco de dados
 - Contém apenas regras de negócio
 
 ### 🔹 Application
+
 - Orquestra o negócio
 - Executa casos de uso
 - Depende apenas do **Domain**
 
 ### 🔹 Interfaces
+
 - Camada de entrada (HTTP, controllers)
 - Traduz requisições para casos de uso
 
 ### 🔹 Infrastructure
+
 - Implementações concretas (DB, APIs externas)
 - Detalhes técnicos isolados
 
@@ -142,4 +146,3 @@ Sinta‑se à vontade para abrir issues, sugerir melhorias ou adaptar o projeto 
 ---
 
 > "Arquitetura não é sobre frameworks. É sobre decisões."
-

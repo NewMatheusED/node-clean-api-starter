@@ -3,10 +3,11 @@ import { IUserRepository } from "../../domain/repositories/IUserRepository"
 import { ApplicationError } from '../errors/ApplicationError'
 
 const userRepositoryMock: IUserRepository = {
+  save: jest.fn(),
   findByEmail: jest.fn(),
-  save: jest.fn() ,
-  findAll: jest.fn()
-  
+  findById: jest.fn(),
+  findAll: jest.fn(),
+  delete: jest.fn(),
 }
 
 describe('CreateUserUseCase', () => {

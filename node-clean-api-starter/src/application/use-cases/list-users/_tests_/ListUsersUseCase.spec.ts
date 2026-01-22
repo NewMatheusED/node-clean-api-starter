@@ -7,6 +7,9 @@ describe('ListUsersUseCase', () => {
     const userRepository: IUserRepository = {
       findByEmail: jest.fn(),
       save: jest.fn(),
+      findById: jest.fn(),
+      delete: jest.fn(),
+
       findAll: jest.fn().mockResolvedValue([
         User.create({ id: '1', name: 'Wilson', email: 'wilson@email.com' }),
         User.create({ id: '2', name: 'Ana', email: 'ana@email.com' }),

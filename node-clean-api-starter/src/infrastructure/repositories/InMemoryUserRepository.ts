@@ -2,6 +2,21 @@ import { User } from '../../domain/entities/User';
 import { IUserRepository } from '../../domain/repositories/IUserRepository';
 
 export class InMemoryUserRepository implements IUserRepository {
+
+  findById(id: string): Promise<User | null> {
+    throw new Error('Method not implemented.');
+  }
+
+async delete(id: string): Promise<void> {
+  const userIndex = this.users.findIndex(user => user.id === id);
+
+  if (userIndex === -1) {
+    return;
+  }
+
+  this.users.splice(userIndex, 1);
+}
+
   
   private users: User[] = [];
   

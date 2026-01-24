@@ -1,17 +1,40 @@
-import { Router } from 'express'
-import { makeListUsersController } from '../factories/ListUsersControllerFactory'
-import { makeCreateUserController } from '../factories/makeCreateUserController'
+import { Router } from 'express';
+import { makeCreateUserControllerFactory } from '../factories/CreateUserControllerFactory';
+import { makeDeleteUserControllerFactory } from '../factories/DeleteUserControllerFactory';
+import { makeGetUserByIdControllerFactory } from '../factories/GetUserByIdControllerFactory';
+import { makeListUsersControllerFactory } from '../factories/ListUsersControllerFactory';
+import { makeUpdateUserControllerFactory } from '../factories/UpdateUserControllerFactory';
 
-const routes = Router()
+const routes = Router();
 
+
+
+
+const createUserController  = makeCreateUserControllerFactory();
+const listUsersController   = makeListUsersControllerFactory();
+const getUserByIdController = makeGetUserByIdControllerFactory();
+const updateUserController  = makeUpdateUserControllerFactory  ();
+const deleteUserController  = makeDeleteUserControllerFactory();
 
 routes.post('/users', (req, res, next) =>
-  makeCreateUserController().handle(req, res, next)
-)
+  createUserController.handle(req, res, next)
+);
 
 routes.get('/users', (req, res, next) =>
-  makeListUsersController().handle(req, res, next)
-)
+  listUsersController.handle(req, res, next)
+);
 
-export { routes as userRoutes }
+routes.get('/users/:id', (req, res, next) =>
+  getUserByIdController.handle(req, res, next)
+);
+
+routes.put('/users/:id', (req, res, next) =>
+  updateUserController.handle(req, res, next)
+);
+
+routes.delete('/users/:id', (req, res, next) =>
+  deleteUserController.handle(req, res, next)
+);
+
+export { routes as userRoutes };
 

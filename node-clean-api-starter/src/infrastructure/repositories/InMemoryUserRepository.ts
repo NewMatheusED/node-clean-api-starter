@@ -3,8 +3,8 @@ import { IUserRepository } from '../../domain/repositories/IUserRepository';
 
 export class InMemoryUserRepository implements IUserRepository {
 
-  findById(id: string): Promise<User | null> {
-    throw new Error('Method not implemented.');
+  async findById(id: string): Promise<User | null> {
+    return this.users.find(user => user.id === id) ?? null;
   }
 
 async delete(id: string): Promise<void> {

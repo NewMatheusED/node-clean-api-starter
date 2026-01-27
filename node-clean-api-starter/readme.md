@@ -1,159 +1,182 @@
-# Node Clean API Starter
+# 🚀 Node Clean API Starter
 
-Starter profissional para criação de APIs Node.js utilizando **Clean Architecture**, com foco em organização, testabilidade e evolução segura do código.
+**Starter simples em Node.js + TypeScript focado em Clean Architecture e DDD aplicados na prática.**  
+Criado para quem quer começar uma API **bem estruturada desde o primeiro commit**, sem over-engineering.
 
-Este projeto foi criado a partir de prática real, estudos contínuos e aplicação consciente de princípios de arquitetura de software.
-
----
-
-## 🎯 Para quem é este projeto?
-
-Este projeto é ideal para:
-
-- Desenvolvedores **backend Node.js**
-- Devs **júnior e pleno** que desejam evoluir tecnicamente
-- Profissionais que querem **aprender Clean Architecture na prática**
-- Quem precisa **acelerar o início de novos projetos**
-- Desenvolvedores que já estudaram arquitetura, mas sentem dificuldade em aplicá-la em projetos reais
+> Sem frameworks pesados.  
+> Sem abstrações desnecessárias.  
+> Código real, organizado e fácil de evoluir.
 
 ---
 
-## 🧩 Qual problema este setup resolve?
+## 🎯 Por que este projeto existe?
 
-Ao longo do desenvolvimento de sistemas backend, é comum enfrentar problemas como:
+Se você já passou por isso, este starter é para você:
 
-- Código excessivamente **acoplado**
-- Dificuldade de **manutenção e evolução**
-- Necessidade de começar **sempre do zero**
-- Falta de clareza sobre **onde cada regra deve ficar**
+- APIs Node.js que começam simples e viram **difíceis de manter**
+- Código **acoplado**, onde tudo depende de tudo
 - Dificuldade para **testar regras de negócio**
-- Projetos que funcionam, mas são difíceis de entender
+- Dúvida constante sobre *“onde essa regra deveria ficar?”*
+- Estudos de Clean Architecture que nunca saem da teoria
 
-Este setup resolve esses problemas oferecendo:
+Este projeto mostra **como aplicar arquitetura limpa de forma simples e prática**, sem complicar.
 
-- Separação clara de responsabilidades
-- Arquitetura organizada desde o primeiro commit
-- Casos de uso bem definidos
-- Facilidade para criação de testes
-- Base sólida para projetos pequenos ou grandes
+---
+
+## 👥 Para quem é este starter?
+
+- Desenvolvedores **Node.js backend**
+- Devs **júnior e pleno** que querem evoluir
+- Quem está aprendendo **Clean Architecture / DDD**
+- Freelancers que precisam começar projetos rápido e bem
+- Quem quer uma base sólida para APIs, micro-SaaS ou startups
+
+---
+
+## 🧠 O que este projeto NÃO é
+
+Para deixar claro (e gerar confiança):
+
+- ❌ Não é um framework
+- ❌ Não é um boilerplate inchado
+- ❌ Não tenta resolver todos os problemas do mundo
+- ❌ Não depende de ORM ou banco específico
+
+👉 É um **starter**, simples, didático e extensível.
 
 ---
 
 ## 🧱 Arquitetura
 
-O projeto segue os princípios da **Clean Architecture**, com separação explícita entre camadas:
+O projeto segue os princípios da **Clean Architecture**, com responsabilidades bem definidas:
 
-    src
+src
 ├── domain
-│ ├── entities
-│ ├── errors
-│ └── repositories
+│   ├── entities
+│   ├── value-objects
+│   ├── errors
+│   └── repositories
 │
 ├── application
-│ ├── use-cases
-│ └── errors
+│   ├── use-cases
+│   └── errors
 │
-├── infrastructure/ # Banco, ORM, serviços externos
-│   └── database
+├── infrastructure
+│   └── repositories
 │
-└── main/            # Bootstrap da aplicação
+└── main
     ├── config
+    ├── factories
     ├── routes
     └── server.ts
 
 ### 🔹 Domain
 
-- Não conhece frameworks
-- Não conhece banco de dados
-- Contém apenas regras de negócio
+- Regras de negócio puras
+- Entidades e Value Objects
+- Não conhece frameworks, HTTP ou banco de dados
 
 ### 🔹 Application
 
-- Orquestra o negócio
-- Executa casos de uso
-- Depende apenas do **Domain**
-
-### 🔹 Interfaces
-
-- Camada de entrada (HTTP, controllers)
-- Traduz requisições para casos de uso
+- Casos de uso
+- Orquestra o domínio
+- Fácil de testar
 
 ### 🔹 Infrastructure
 
-- Implementações concretas (DB, APIs externas)
-- Detalhes técnicos isolados
+- Implementações concretas (ex: repositórios)
+- Pode ser trocada sem quebrar o domínio
+
+### 🔹 Main
+
+- Bootstrap da aplicação
+- Configurações, rotas e composição
 
 ---
 
-## 🚀 Tecnologias utilizadas
+## 🧪 Testes
 
-- Node.js
-- TypeScript
-- Express
-- Jest
-- Docker
+- Testes unitários de casos de uso
+- Testes de integração simples
+- Foco em **testar regra de negócio**, não framework
+
+Executar os testes:
+
+```bash
+npm test
+```
 
 ---
 
-## ▶️ Como executar o projeto
+## 🚀 Como executar o projeto
 
-### Instalação
+### 1️⃣ Clonar o repositório
 
-bash
-git clone < url-do-repositorio >
-
+```bash
+git clone <url-do-repositorio>
 cd node-clean-api-starter
+```
 
 ### 2️⃣ Subir com Docker
 
-bash
+```bash
 docker-compose up -d
+```
 
-A API estará disponível em:
+A API ficará disponível em:
 
-<http://localhost:3000>
+👉 [http://localhost:3000]
 
 ---
 
 ## 📌 Status do projeto
 
-✅ API rodando
-✅ Estrutura de pastas definida
-✅ Arquitetura limpa
-🚧 Casos de uso em implementação
+- ✅ Estrutura base definida
+- ✅ Casos de uso implementados
+- ✅ Value Objects e erros de domínio
+- 🚧 Evolução contínua
 
 ---
 
-## 🧠 Para quem é este projeto?
+## 🛣️ Próximos passos (roadmap)
 
-- Desenvolvedores que querem **arquitetura limpa de verdade**
-- Quem está cansado de projetos Node.js desorganizados
-- Freelancers que precisam entregar rápido e bem
-- Base para micro‑SaaS ou startups
-
----
-
-## 🛣️ Próximos passos planejados
-
-- [ ] Caso de uso real (CreateEntity)
-- [ ] Persistência com banco de dados
-- [ ] Testes unitários no Domain
+- [ ] Persistência com banco real
+- [ ] DTOs de entrada e saída
 - [ ] Autenticação
 - [ ] Documentação da API
+- [ ] Exemplo com ORM (opcional)
+
+---
+
+## ⭐ Por que dar uma star?
+
+Se este projeto te ajudou a:
+
+- entender Clean Architecture na prática
+- começar um projeto melhor estruturado
+- evitar código acoplado desde o início
+
+👉 **considere deixar uma ⭐**
+
+Isso ajuda o projeto a alcançar mais desenvolvedores.
+
+---
+
+## 🤝 Contribuições
+
+Contribuições são muito bem-vindas!
+
+- Abra uma **issue**
+- Sugira melhorias
+- Envie um **PR**
+- Use como base para seus projetos
 
 ---
 
 ## 👨‍💻 Autor
 
-**Wilson Gonçalves**  
+**Wilson Roberto dos Santos Gonçalves**  
 Desenvolvedor focado em Clean Architecture, DDD e boas práticas de software.
 
----
-
-## ⭐ Contribuições
-
-Sinta‑se à vontade para abrir issues, sugerir melhorias ou adaptar o projeto para seu uso.
-
----
-
-> "Arquitetura não é sobre frameworks. É sobre decisões."
+> “Arquitetura não é sobre frameworks.  
+> É sobre decisões.”

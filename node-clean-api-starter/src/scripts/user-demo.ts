@@ -1,6 +1,7 @@
 import { CreateUserUseCase } from "../application/use-cases/create-user/CreateUserUseCase";
 import { DeleteUserUseCase } from "../application/use-cases/delete-user/DeleteUserUseCase";
 import { FindUserByEmailUseCase } from "../application/use-cases/find-user-by-email/FindUserByEmailUseCase";
+import { GetUserByIdUseCase } from "../application/use-cases/get-user-by-id/GetUserByIdUseCase";
 import { InMemoryUserRepository } from "../infrastructure/repositories/InMemoryUserRepository";
 
 async function run() {
@@ -8,7 +9,7 @@ async function run() {
 
   const createUser = new CreateUserUseCase(userRepository);
   const deleteUser = new DeleteUserUseCase(userRepository);
-  const findById = new FindUserByEmailUseCase(userRepository);
+  const findById = new GetUserByIdUseCase(userRepository);
   const findByEmail = new FindUserByEmailUseCase(userRepository);
 
   console.log("🚀 Criando usuários...\n");

@@ -31,11 +31,11 @@ describe('UpdateUserUseCase', () => {
 
     const result = await useCase.execute({
       id: '1',
-      name: 'Wilson Updated',
+      name: 'Wilson Update',
     });
 
-    expect(result.name).toBe('Wilson Updated');
-    expect(result.email).toBe(existingUser.email);
+    expect(result.name.getValue()).toBe('Wilson Update');
+    expect(result.email.getValue()).toBe(existingUser.email.getValue());
     expect(userRepositoryMock.save).toHaveBeenCalled();
   });
 

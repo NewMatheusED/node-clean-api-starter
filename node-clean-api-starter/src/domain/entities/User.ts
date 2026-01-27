@@ -1,21 +1,33 @@
-import { DomainError } from '../errors/DomainError';
+import { Email } from "../value-objects/Email";
+import { Name } from "../value-objects/Name";
 
 export class User {
   private constructor(
     public readonly id: string,
-    public readonly name: string,
-    public readonly email: string
-  ) {}
+    public readonly name: Name,
+    public readonly email: Email,
+  ) { }
 
-  static create(props: { id: string; name: string; email: string }) {
-    if (!props.name) {
-      throw new DomainError('Nome é obrigatório');
-    }
+  static create(props: { id: string; name: string; email: string }) {    
+    const name = Name.create(props.name);
+    const email = Email.create(props.email);
 
-    if (!props.email.includes('@')) {
-      throw new DomainError('Email inválido');
-    }
+    return new User(props.id, name, email);
+  }
 
-    return new User(props.id, props.name, props.email);
+  getId(): string {
+    return this.id;
+  }
+
+  getName(): string {
+    return this.name.getValue();
+  }
+
+  getEmail(): string {
+    return this.email.getValue();
+  }
+
+  equals(other: User): boolean {
+    return this.id === other.id && this.email.equals(other.email);
   }
 }

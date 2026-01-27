@@ -1,5 +1,8 @@
-import { app } from './app';
+import { app } from "./app";
 
-app.listen(3000, () => {
-  console.log('🚀 Server running at http://localhost:3000');
+// sempre legal deixar a porta como variável de ambiente, eu pelo menos prefiro assim :)
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+  console.log(`🚀 Server running at http://localhost:${PORT}`);
 });

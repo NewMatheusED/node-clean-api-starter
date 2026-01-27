@@ -1,24 +1,28 @@
 import { randomUUID } from 'crypto';
-import { User } from '../../../domain/entities/User';
-import { IUserRepository } from '../../../domain/repositories/IUserRepository';
-import { ApplicationError } from '../../errors/ApplicationError';
-import { CreateUserDTO } from './CreateUserDTO';
+import { User } from "../../../domain/entities/User";
+import { IUserRepository } from "../../../domain/repositories/IUserRepository";
+import { Email } from "../../../domain/value-objects/Email";
+import { ApplicationError } from "../../errors/ApplicationError";
+import { CreateUserDTO } from "./CreateUserDTO";
 
 export class CreateUserUseCase {
-  constructor(private readonly userRepository: IUserRepository) {}
+  constructor(
+    private readonly userRepository: IUserRepository,
+  ) { }
 
-  async execute(data: CreateUserDTO): Promise<User> {
+  async execute({ name, email }: CreateUserDTO): Promise<User> {
+    const emailValueObject = Email.create(email);
     const emailAlreadyExists =
-      await this.userRepository.findByEmail(data.email);
+      await this.userRepository.findByEmail(emailValueObject.getValue());
 
     if (emailAlreadyExists) {
-      throw new ApplicationError('Email já cadastrado');
+      throw new ApplicationError("Email já cadastrado");
     }
 
     const user = User.create({
       id: randomUUID(),
-      name: data.name,
-      email: data.email,
+      name: name,
+      email: email,
     });
 
     await this.userRepository.save(user);

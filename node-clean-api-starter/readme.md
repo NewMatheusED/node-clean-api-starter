@@ -53,39 +53,35 @@ O projeto segue os princípios da **Clean Architecture**, com separação explí
 │ ├── use-cases
 │ └── errors
 │
-├── infrastructure
-│ └── repositories
+├── infrastructure/ # Banco, ORM, serviços externos
+│   └── database
 │
-├── interfaces
-│ └── http
-│ ├── controllers
-│ └── middlewares
-│
-└── main
-├── routes
-├── factories
-├── app.ts
-└── server.ts
+└── main/            # Bootstrap da aplicação
+    ├── config
+    ├── routes
+    └── server.ts
 
+### 🔹 Domain
 
-### Responsabilidade das camadas
+- Não conhece frameworks
+- Não conhece banco de dados
+- Contém apenas regras de negócio
 
-- **Domain**  
-  Contém regras de negócio puras, entidades e contratos.  
-  Não depende de frameworks ou detalhes técnicos.
+### 🔹 Application
 
-- **Application**  
-  Contém os casos de uso da aplicação.  
-  Orquestra o domínio, sem conhecer HTTP, banco de dados ou frameworks.
+- Orquestra o negócio
+- Executa casos de uso
+- Depende apenas do **Domain**
 
-- **Infrastructure**  
-  Implementações técnicas como repositórios (InMemory, banco de dados, etc).
+### 🔹 Interfaces
 
-- **Interfaces**  
-  Camada de adaptação (controllers HTTP, middlewares).
+- Camada de entrada (HTTP, controllers)
+- Traduz requisições para casos de uso
 
-- **Main**  
-  Ponto de composição da aplicação (rotas, factories, inicialização).
+### 🔹 Infrastructure
+
+- Implementações concretas (DB, APIs externas)
+- Detalhes técnicos isolados
 
 ---
 
@@ -102,70 +98,62 @@ O projeto segue os princípios da **Clean Architecture**, com separação explí
 ## ▶️ Como executar o projeto
 
 ### Instalação
-```bash
-npm install
 
-##  Ambiente de desenvolvimento
-npm run dev
+bash
+git clone < url-do-repositorio >
 
-##  Build
-npm run build
-npm start
+cd node-clean-api-starter
 
+### 2️⃣ Subir com Docker
 
-npm run build
-npm start
+bash
+docker-compose up -d
 
+A API estará disponível em:
 
-##  O projeto possui testes de domínio e de casos de uso.
-npm test
+<http://localhost:3000>
 
+---
 
-## 🔄 Infraestrutura substituível
-O projeto inicia utilizando um repositório InMemory, ideal para testes e MVPs.
+## 📌 Status do projeto
 
-A infraestrutura pode ser substituída facilmente por:
+✅ API rodando
+✅ Estrutura de pastas definida
+✅ Arquitetura limpa
+🚧 Casos de uso em implementação
 
-Prisma
+---
 
-TypeORM
+## 🧠 Para quem é este projeto?
 
-Sequelize
+- Desenvolvedores que querem **arquitetura limpa de verdade**
+- Quem está cansado de projetos Node.js desorganizados
+- Freelancers que precisam entregar rápido e bem
+- Base para micro‑SaaS ou startups
 
-Qualquer banco de dados
+---
 
-Sem necessidade de alterar:
+## 🛣️ Próximos passos planejados
 
-Entidades
+- [ ] Caso de uso real (CreateEntity)
+- [ ] Persistência com banco de dados
+- [ ] Testes unitários no Domain
+- [ ] Autenticação
+- [ ] Documentação da API
 
-Casos de uso
+---
 
-Controllers 
+## 👨‍💻 Autor
 
-O projeto inicia utilizando um repositório InMemory, ideal para testes e MVPs.
+**Wilson Gonçalves**  
+Desenvolvedor focado em Clean Architecture, DDD e boas práticas de software.
 
-A infraestrutura pode ser substituída facilmente por:
+---
 
-Prisma
+## ⭐ Contribuições
 
-TypeORM
+Sinta‑se à vontade para abrir issues, sugerir melhorias ou adaptar o projeto para seu uso.
 
-Sequelize
+---
 
-Qualquer banco de dados
-
-Sem necessidade de alterar:
-
-Entidades
-
-Casos de uso
-
-Controllers
-
-📌 Status do projeto
-
-✔ Estrutura base concluída
-✔ Casos de uso de exemplo (CreateUser, ListUsers)
-✔ Middleware global de erros
-✔ Testes unitários
-✔ Pronto para expansão
+> "Arquitetura não é sobre frameworks. É sobre decisões."

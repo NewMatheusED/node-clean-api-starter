@@ -18,7 +18,7 @@ export class UpdateUserUseCase {
       throw new ApplicationError('User not found');
     }
 
-    if (data.email && data.email !== user.email) {
+    if (data.email && data.email !== user.email.getValue()) {
       const emailAlreadyExists =
         await this.userRepository.findByEmail(data.email);
 
@@ -29,8 +29,8 @@ export class UpdateUserUseCase {
 
     const updatedUser = User.create({
       id: user.id,
-      name: data.name ?? user.name,
-      email: data.email ?? user.email,
+      name: data.name ?? user.name.getValue(),
+      email: data.email ?? user.email.getValue(),
     });
 
     await this.userRepository.save(updatedUser);

@@ -1,6 +1,6 @@
-import { randomUUID } from 'crypto';
 import { User } from "../../../domain/entities/User";
 import { IUserRepository } from "../../../domain/repositories/IUserRepository";
+import { IdGenerator } from "../../gateways/IdGenerator";
 import { Email } from "../../../domain/value-objects/Email";
 import { Name } from "../../../domain/value-objects/Name";
 import { ApplicationError } from "../../errors/ApplicationError";
@@ -9,6 +9,7 @@ import { CreateUserDTO } from "./CreateUserDTO";
 export class CreateUserUseCase {
   constructor(
     private readonly userRepository: IUserRepository,
+    private readonly idGenerator: IdGenerator,
   ) { }
 
   async execute({ name, email }: CreateUserDTO): Promise<User> {
@@ -22,7 +23,7 @@ export class CreateUserUseCase {
     }
 
     const user = User.create({
-      id: randomUUID(),
+      id: this.idGenerator.generate(),
       name: nameValueObject.getValue(),
       email: emailValueObject.getValue(),
     });
